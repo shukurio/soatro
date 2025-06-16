@@ -1,0 +1,24 @@
+[33mcommit 8698d7c34eb2ea49e2dadf8c6adff45a566f8bda[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: shukurergashov <shukurillo.dev@gmail.com>
+Date:   Sun Jun 15 23:17:58 2025 -0400
+
+    Create base entity structure for tracker(Soatro) app
+    
+    - Added associations between Company, Department, and Employee
+    - Introduced EmployeeJob to support custom hourly wages and job links
+    - Created and mapped enums (JobTitle, Role) with validation and role-based logic
+    - Included auditing fields via BaseEntity
+    - Implemented soft delete check and UserDetails interface in Employee
+    - Linked Shift entity to EmployeeJob with clock in/out timestamps
+
+[33mcommit 8ca2b8f6ce6c480994463122eaf623aeea5be234[m
+Author: shukurergashov <shukurillo.dev@gmail.com>
+Date:   Fri Jun 13 16:53:17 2025 -0400
+
+    Add Company, Department, and Employee entities with relationships and base auditing
+    
+    - Introduced BaseEntity with ID, timestamps, soft delete
+    - Created Company entity with name, code, and list of departments
+    - Created Department entity with company reference and list of employees
+    - Created Employee entity with department and company mapping, implements UserDetails
+    - Set up relationships between entities using @OneToMany and @ManyToOne
