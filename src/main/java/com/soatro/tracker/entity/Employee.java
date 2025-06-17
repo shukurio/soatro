@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Employee extends BaseEntity implements UserDetails {
+public class Employee extends BaseEntity {
 
     @NotBlank(message = "First name is required")
     @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
@@ -59,54 +59,10 @@ public class Employee extends BaseEntity implements UserDetails {
     private Role role;
 
     @ManyToOne
-    @JoinColumn(name="company_id")
+    @JoinColumn(name = "company_id")
     private Company company;
 
     @ManyToOne
-    @JoinColumn(name="department_id")
+    @JoinColumn(name = "department_id")
     private Department department;
-
-
-
-
-
-
-
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return isActive;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return isActive;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return isActive;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return isActive && !isDeleted();
-    }
-
 }
